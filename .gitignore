@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# what I want to get rid of
+.vscode/
