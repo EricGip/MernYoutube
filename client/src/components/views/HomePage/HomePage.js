@@ -3,8 +3,6 @@ import Card from '@material-ui/core/Card';
 import DialogTitle from "@material-ui/core/DialogTitle"
 import Avatar from '@material-ui/core/Avatar';
 
-const { MetaInfo } = Card;
-
 function HomePage() {
     return (
         <div style={{ width: "85%", margin: "3rem auto"}}>
