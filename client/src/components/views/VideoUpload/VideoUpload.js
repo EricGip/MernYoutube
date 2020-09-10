@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,12 +30,13 @@ const Private = [
   { value: 1, label: "Private" },
 ];
 
+
 const gameChoices = [
-  { value: 0, label: "Film & Animation" },
-  { value: 0, label: "Autos & Vehicles" },
-  { value: 0, label: "Music" },
-  { value: 0, label: "Pets & Animals" },
-  { value: 0, label: "Sports" }
+  { value: 0, label: "League of Legends" },
+  { value: 0, label: "Valorant" },
+  { value: 0, label: "Counter Strike: Global Offensive"},
+  { value: 0, label: "Among Us" },
+  { value: 0, label: "Diabotical"},
 ];
 
 function VideoUpload() {
@@ -42,7 +44,6 @@ function VideoUpload() {
 
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
-
   const [Categories, setCategories] = useState("Film & Animation");
   const [Privacy, setPrivacy] = useState(0);
 
@@ -67,7 +68,27 @@ function VideoUpload() {
 
   const onSubmit = (event) => {
     console.log(Title + " " + Description + " " + Categories + " " + Privacy)
+    
+    event.preventDefault();
+
+    const sendingData = {
+      title: Title,
+      description: Description,
+      privacy: Privacy,
+    }
   }
+
+  const onDrop = (files) => {
+    let formData = new FormData();
+
+    const config = {
+      header: { 'content-ty[e': 'multipart/form-data' }
+    }
+
+    console.log(files)
+    formData.append("file", files[0])
+  }
+
 
   return (
     <div>
@@ -82,7 +103,7 @@ function VideoUpload() {
             alignItems: "center"
           }}
         >
-          <Dropzone multiple={false} maxSize={800000000}>
+          <Dropzone multiple={false} maxSize={800000000} onDrop = {onDrop}>
             {({ getRootProps, getInputProps }) => (
               <div
                 style={{
@@ -149,7 +170,9 @@ function VideoUpload() {
               </option>
             ))}
           </NativeSelect>
-          <FormHelperText></FormHelperText>
+          <FormHelperText>
+            Don't see your game? Request it <Link> Here! To do! </Link>
+          </FormHelperText>
         </FormControl>
 
         <br />
