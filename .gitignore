@@ -106,3 +106,5 @@ dist
 
 # what I want to get rid of
 .vscode/
+
+oAuth.js

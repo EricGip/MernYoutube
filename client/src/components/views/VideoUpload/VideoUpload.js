@@ -48,8 +48,9 @@ function VideoUpload() {
 
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
-  const [Categories, setCategories] = useState("Film & Animation");
+  const [Categories, setCategories] = useState("League of Legends");
   const [Privacy, setPrivacy] = useState(0);
+  const [FilePath, setFilePath] = useState("");
 
   const onTitleChange = (event) => {
     setTitle(event.currentTarget.value);
@@ -95,7 +96,16 @@ function VideoUpload() {
     axios.post('/api/video/uploadfiles/', formData, config)
       .then( (response, err) => {
         if (response.data.success) {
-          console.log("success")
+          console.log(response)
+
+          let fileData = {
+            filePath: response.data.filePath,
+            fileName: response.data.fileName,
+          }
+
+          setFilePath(response.data.filePath)
+          // need to generate thumbnail now
+
         } else {
           console.log(err)
         }

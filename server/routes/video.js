@@ -5,6 +5,7 @@ const multer = require("multer");
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
     // NOTE: HAS TO BE UPLOADS/,,, NOT /UPLOADS
+    // also, this routes to root directory uploads. 
     cb(null, "uploads/");
   },
   filename: function(req, file, cb) {
