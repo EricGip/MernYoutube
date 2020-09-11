@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import Dropzone from "react-dropzone";
+import axios from "axios";
+// maybe wrong link
+import { Link } from "react-router-dom";
+
+
 import TextField from "@material-ui/core/TextField";
 import Icon from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,7 +16,6 @@ import Button from "@material-ui/core/Button";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -87,6 +91,15 @@ function VideoUpload() {
 
     console.log(files)
     formData.append("file", files[0])
+
+    axios.post('/api/video/uploadfiles/', formData, config)
+      .then( (response, err) => {
+        if (response.data.success) {
+          console.log("success")
+        } else {
+          console.log(err)
+        }
+      })
   }
 
 

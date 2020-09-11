@@ -29,6 +29,10 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+// routes
+
+app.use("/api/video", require('./routes/video'))
+
 if (process.env.NODE_ENV === "production") {
   // Set static folder
   // All the javascript and css files will be read and served from this folder
