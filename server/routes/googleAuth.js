@@ -14,7 +14,7 @@ const isLoggedIn = (req, res, next) => {
 
 
 
-app.get("/good", isLoggedIn, (req, res) => res.send(`welcome ${req.user.email} `));
+app.get("/good", isLoggedIn, (req, res) => res.send(`welcome ${req.user} `));
 
 app.get("/failed", (req, res) => res.send("failed to log in"));
 

@@ -43,7 +43,7 @@ const gameChoices = [
   { value: 0, label: "Diabotical"},
 ];
 
-function VideoUpload() {
+function VideoUpload(props) {
   const classes = useStyles();
 
   const [Title, setTitle] = useState("");
@@ -51,6 +51,8 @@ function VideoUpload() {
   const [Categories, setCategories] = useState("League of Legends");
   const [Privacy, setPrivacy] = useState(0);
   const [FilePath, setFilePath] = useState("");
+  const [Duration, setDuration] = useState("");
+  const [Thumbnail, setThumbnail] = useState("");
 
   const onTitleChange = (event) => {
     setTitle(event.currentTarget.value);
@@ -80,8 +82,24 @@ function VideoUpload() {
       title: Title,
       description: Description,
       privacy: Privacy,
+      filePath: FilePath,
+      duration: Duration,
+      thumbnail:Thumbnail,
+      
     }
+
+    axios.post('/api/video/VideoUpload', sendingData)
+      .then(response => {
+        if (response.data.success) {
+          alert("we gud")
+          props.history.push('/')
+        } else {
+          alert("failed")
+        }
+      })
   }
+
+
 
   const onDrop = (files) => {
     let formData = new FormData();
